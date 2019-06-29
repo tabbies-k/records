@@ -12,7 +12,14 @@
 
   <body>
     <%= render 'layouts/header' %>
+    <div><%= current_user.email %>としてログインしています</div>
     <div class="container">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>

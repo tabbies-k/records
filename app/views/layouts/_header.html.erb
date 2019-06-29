@@ -1,11 +1,20 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "進捗管理アプリ", '#', id: "logo" %>
+    <% if user_signed_in? %>
+    <%= link_to "進捗管理アプリ", '/records', id: "logo" %>
+    <% else %>
+    <%= link_to "進捗管理アプリ", '/users/sign_in', id: "logo" %>
+    <% end %>
     <nav>
         <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "はじめる",   '/records' %></li>
-            <li><%= link_to "Help",   '#' %></li>
-            <li><%= link_to "Log in", '#' %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "商談",   '/records' %></li>
+            <li><%= link_to 'マイプロフィール', edit_user_registration_path %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <% else %>  
+            <li><%= link_to "ログイン", new_user_session_path %></li>
+            <li><%= link_to "ユーザ登録", '/users/sign_up' %></li>
+          <% end %>
         </ul>
     </nav>
   </div>
