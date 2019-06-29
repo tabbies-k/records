@@ -1,0 +1,42 @@
+<%= form_for(record) do |f| %>
+  <% if record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :候補者%>
+    <%= f.text_field :candidate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :企業名 %>
+    <%= f.text_field :client %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ステータス %>
+    <%= f.select :status, [
+      ["オーダリング","オーダリング"],
+      ["マッチング","マッチング"],
+      ["クロージング","クロージング"],
+      ["成約","成約"]
+    ]%>
+  </div>
+
+  <div class="field">
+    <%= f.label :（見込）売上 %>
+    <%= f.number_field :sales %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

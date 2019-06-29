@@ -1,0 +1,17 @@
+
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-3">
+    <p><b>候補者: </b><%= @record.candidate %></p>
+    <p><b>企業名: </b><%= @record.client %></p>
+    <p><b>ステータス: </b><%= @record.status %></p>
+    <p><b>売上: </b><%= @record.sales %></p>
+
+    <p>
+      <%= link_to 'Edit', edit_record_path(@record) %> |
+      <%= link_to 'Destroy', @record, data: { confirm: 'Are you sure?' }, method: :delete %> |
+      <%= link_to 'Back', "/records" %>
+    </p>
+  </div>
+</div>
