@@ -8,5 +8,8 @@
   </div>
 </div>
 
-<p class="btn"><%= link_to "編集", edit_user_registration_path %></p>
+<% if @user == current_user %>
+  <p class="btn"><%= link_to "編集", edit_user_registration_path(@user) %></p>
+<% end %>
+
 <p class="btn"><%= link_to "戻る", :back %></p>

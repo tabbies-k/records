@@ -1,0 +1,55 @@
+<h3><%= current_user.name %>さんのマイページ</h3>
+
+<table class="table">
+   <thead>
+    <tr>
+      <th>ユーザーID</th>
+      <th>担当者名</th>
+      <th>支社名</th>
+      <th>email</th>
+      <th>作成日</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= current_user.id %></td>
+        <td><%= current_user.name%></td>
+        <td><%= current_user.branch %></td>
+        <td><%= current_user.email %></td>
+        <td><%= current_user.created_at %></td>
+        <td><%= link_to '編集', edit_user_registration_path(current_user) %></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+<h3>MY商談</h3>
+
+<table class="table">
+   <thead>
+    <tr>
+      <th>候補者</th>
+      <th>企業名</th>
+      <th>ステータス</th>
+      <th>売上</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.records.each do |record| %>
+      <tr>
+        <td><%= record.candidate %></td>
+        <td><%= record.client  %></td>
+        <td><%= record.status %></td>
+        <td><%= record.sales %></td>
+        <td><%= link_to '編集', edit_record_path(record) %></td>
+        <td><%= link_to '削除', record, data: { confirm: '削除しますか?' }, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p class="btn" ><%= link_to '新規作成', new_record_path %></p>
+<p class="btn" ><%= link_to "戻る", :back %></p>

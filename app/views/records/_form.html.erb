@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :担当者%>
-    <%= f.text_field :user_id , value:current_user.id %>
+    <%= f.text_field :user_id %>
   </div>
 
   <div class="field">
@@ -42,6 +42,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit '新規作成', :class=>"btn"  %>
+    <%= f.submit '送信', :class=>"btn"  %>
   </div>
 <% end %>
