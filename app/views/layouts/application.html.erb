@@ -12,9 +12,6 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <% if user_signed_in? %>
-      <div><%= current_user.email %>としてログインしています</div>
-    <% end %>
     <div class="container">
       <% if notice %>
         <p class="alert alert-success"><%= notice %></p>
