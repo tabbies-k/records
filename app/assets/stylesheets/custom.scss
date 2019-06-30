@@ -24,17 +24,18 @@ textarea {
   margin-bottom: 10px;
 }
 
-.button {
+.btn {
+  background: #ff7f50;
   display: inline-block;
   padding: 0.3em 1em;
   text-decoration: none;
-  color: #ff7f50;
+  color: white;
   border: solid 2px #ff7f50;
   border-radius: 3px;
   transition: .4s;
 }
-.button:hover {
-  background: #ff7f50;
+.btn:hover {
+  background: #ffb499;
   color: white;
 }
 
