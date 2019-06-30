@@ -8,7 +8,7 @@
     <nav>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><%= link_to "#{current_user.name}さん、こんにちは", "/users/#{current_user.id}" %></li>
+            <li><%= link_to "ID:#{current_user.id} #{current_user.name}さんのページ", "/users/#{current_user.id}" %></li>
             <li><%= link_to "商談",   '/records' %></li>
             <li><%= link_to "ユーザ一覧",   '/users' %></li>
             <li><%= link_to 'プロフィール編集', edit_user_registration_path %></li>

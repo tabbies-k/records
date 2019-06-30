@@ -5,6 +5,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>担当者</th>
       <th>候補者</th>
       <th>企業名</th>
       <th>ステータス</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @records.each do |record| %>
       <tr>
+        <td><%= record.user.name %></td>
         <td><%= record.candidate %></td>
         <td><%= record.client %></td>
         <td><%= record.status %></td>
