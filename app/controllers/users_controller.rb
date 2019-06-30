@@ -8,4 +8,8 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
   
+  def myrecords
+    @user = current_user
+  end
+  
 end

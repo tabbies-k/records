@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, {presence: true}
   validates :branch, {presence: true}
+  
+  def records
+    return Record.where(user_id: self.id)
+  end
+
 end
