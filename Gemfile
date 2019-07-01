@@ -10,6 +10,8 @@ end
 gem 'rails', '~> 5.0.7', '>= 5.0.7.2'
 gem "bootstrap-sass", ">= 3.4.1"
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 # Use sqlite3 as the database for Active Record
 group :development do
   gem 'sqlite3', '~> 1.3.6'
