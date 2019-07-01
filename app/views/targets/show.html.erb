@@ -1,0 +1,23 @@
+<h1>KGI</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>年</th>
+      <th>月</th>
+      <th>担当者</th>
+      <th>売上目標</th>
+      <th>現在の売上</th>
+      <th>進捗率</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @target.year %>年</td>
+        <td><%= @target.month %>月</td>
+        <td><%= @target.user.name %></td>
+        <td><%= @target.target_sales %>万円</td>
+      </tr>
+  </tbody>
+</table>

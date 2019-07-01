@@ -10,8 +10,8 @@
           <% if user_signed_in? %>
             <li><%= link_to "ID:#{current_user.id} #{current_user.name}さんのマイページ", '/my_page' %></li>
             <li><%= link_to "すべての商談",   '/records' %></li>
+            <li><%= link_to "目標/進捗",   '/targets' %></li>
             <li><%= link_to "ユーザ一覧",   '/users' %></li>
-            <li><%= link_to "プロフィール", "/users/#{current_user.id}" %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           <% else %>  
             <li><%= link_to "ログイン", new_user_session_path %></li>

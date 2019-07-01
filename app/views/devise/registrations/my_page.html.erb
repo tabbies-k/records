@@ -23,6 +23,32 @@
   </tbody>
 </table>
 
+<h3>目標</h3>
+
+<table class="table">
+   <thead>
+    <tr>
+      <th>年</th>
+      <th>月</th>
+      <th>売上目標</th>
+      <th>現在の売上</th>
+      <th>進捗率</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.targets.each do |target| %>
+      <tr>
+        <td><%= target.year %></td>
+        <td><%= target.month %></td>
+        <td><%= target.target_sales %>万円</td>
+        <td>100万円</td>
+        <td><%= (100.to_f/target.target_sales* 100).round(1) %>%</td>
+        <td><%= link_to '編集', edit_target_path(target) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
 <h3>MY商談</h3>

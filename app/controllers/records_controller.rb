@@ -29,7 +29,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to records_url, notice: '商談を登録しました' }
+        format.html { redirect_to records_url, notice: '登録しました' }
         format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new }

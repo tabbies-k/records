@@ -10,4 +10,8 @@ class User < ApplicationRecord
     return Record.where(user_id: self.id)
   end
 
+  def targets
+    return Target.where(user_id: self.id)
+  end
+
 end
