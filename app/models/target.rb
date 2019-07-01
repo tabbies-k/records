@@ -6,5 +6,13 @@ class Target < ApplicationRecord
     def user
         return User.find_by(id: self.user_id) 
     end
+    
+    def records
+        return Record.where(user_id: self.user_id)
+    end
+    
+    def total_sales
+        return records.sum(:sales) 
+    end
 
 end

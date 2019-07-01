@@ -9,6 +9,10 @@ class User < ApplicationRecord
   def records
     return Record.where(user_id: self.id)
   end
+  
+  def total_sales
+    return records.sum(:sales) 
+  end
 
   def targets
     return Target.where(user_id: self.id)

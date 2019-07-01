@@ -1,4 +1,4 @@
-<h1>目標</h1>
+<h1>目標と進捗状況</h1>
 
 <table class="table">
   <thead>
@@ -6,8 +6,8 @@
       <th>年</th>
       <th>月</th>
       <th>担当者</th>
-      <th>売上目標</th>
       <th>現在の売上</th>
+      <th>売上目標</th>
       <th>進捗率</th>
     </tr>
   </thead>
@@ -18,9 +18,9 @@
         <td><%= target.year %>年</td>
         <td><%= target.month %>月</td>
         <td><%= target.user.name %></td>
+        <td><%= target.total_sales %>万円</td>
         <td><%= target.target_sales %>万円</td>
-        <td>100万円</td>
-        <td><%= (100.to_f/target.target_sales* 100).round(1) %>%</td>
+        <td><%= (target.total_sales.to_f/target.target_sales* 100).round(1) %>%</td>
         <td><%= link_to '編集', edit_target_path(target) %></td>
         <td><%= link_to '削除', target, data: { confirm: '削除しますか?' }, method: :delete %></td>
       </tr>

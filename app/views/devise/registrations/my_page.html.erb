@@ -42,8 +42,8 @@
         <td><%= target.year %></td>
         <td><%= target.month %></td>
         <td><%= target.target_sales %>万円</td>
-        <td>100万円</td>
-        <td><%= (100.to_f/target.target_sales* 100).round(1) %>%</td>
+        <td><%= current_user.total_sales %>万円</td>
+        <td><%= (current_user.total_sales.to_f/target.target_sales* 100).round(1) %>%</td>
         <td><%= link_to '編集', edit_target_path(target) %></td>
       </tr>
     <% end %>

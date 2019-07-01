@@ -5,7 +5,8 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all
+    @records = Record.search(params[:search])
+    @total_sales = @records.sum(:sales)
   end
 
   # GET /records/1
@@ -61,7 +62,7 @@ class RecordsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_record

@@ -1,5 +1,18 @@
 <h1>商談一覧</h1>
 
+<div> 
+  <%= form_tag(records_path, method: "get") do %>
+   <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "検索", :name => nil %>
+  </p>
+  <% end %>
+</div>
+
+<div>
+  <p>全員の合計売上　<%= @total_sales %>万円</p>
+</div>
+
 <table class="table">
   <thead>
     <tr>
@@ -19,7 +32,7 @@
         <td><%= record.candidate %></td>
         <td><%= record.client %></td>
         <td><%= record.status %></td>
-        <td><%= record.sales %></td>
+        <td><%= record.sales %>万円</td>
         <td><%= link_to '編集', edit_record_path(record) %></td>
         <td><%= link_to '削除', record, data: { confirm: '削除しますか?' }, method: :delete %></td>
       </tr>
