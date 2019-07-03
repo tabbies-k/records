@@ -10,16 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190701001744) do
+ActiveRecord::Schema.define(version: 20190703040553) do
+
+  create_table "entries", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "candidate_id"
+    t.string   "client"
+    t.string   "entry_status"
+    t.date     "interview_day"
+    t.integer  "expected_sales"
+    t.string   "rank"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "records", force: :cascade do |t|
     t.string   "candidate"
-    t.string   "client"
     t.string   "status"
     t.integer  "sales"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_id"
+    t.integer  "candidate_id"
   end
 
   create_table "targets", force: :cascade do |t|

@@ -1,9 +1,31 @@
-<div class="row">
-  <div class="col-md-3">
-    <p><b>候補者: </b><%= @record.candidate %></p>
-    <p><b>企業名: </b><%= @record.client %></p>
-    <p><b>ステータス: </b><%= @record.status %></p>
-    <p><b>売上: </b><%= @record.sales %></p>
+<h3><%=  @record.candidate %>応募状況　（<%= @record.status %>）</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>企業名</th>
+      <th>ステータス</th>
+      <th>面接日</th>
+      <th>見込金額</th>
+      <th>見込ランク</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @record.entries.each do |entry| %>
+      <tr>
+        <td><%= entry.client %></td>
+        <td><%= entry.entry_status %></td>
+        <td><%= entry.interview_day %></td>
+        <td><%= entry.expected_sales %></td>
+        <td><%= entry.rank %></td>
+        <td><%= link_to '編集', edit_entry_path(entry) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '応募追加', new_entry_path %>
 
     <p>
       <%= link_to 'Edit', edit_record_path(@record) %> |

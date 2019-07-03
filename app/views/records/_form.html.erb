@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= f.label :担当者%>
-    <%= f.text_field :user_id %>
+    <%= f.collection_select(:user_id, @users, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :候補者ID %>
+    <%= f.number_field :candidate_id %>
   </div>
 
   <div class="field">
     <%= f.label :候補者 %>
     <%= f.text_field :candidate %>
-  </div>
-
-  <div class="field">
-    <%= f.label :企業名 %>
-    <%= f.text_field :client %>
   </div>
 
   <div class="field">
@@ -37,7 +37,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :（見込）売上 %>
+    <%= f.label :成約金額 %>
     <%= f.number_field :sales %>
   </div>
 

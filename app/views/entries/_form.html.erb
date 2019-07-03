@@ -1,0 +1,59 @@
+<%= form_for(entry) do |f| %>
+  <% if entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id, "担当者" %>
+    <%= f.collection_select(:user_id, @users, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :candidate_id, "候補者" %>
+    <%= f.number_field :candidate_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :client, "企業名" %>
+    <%= f.text_field :client %>
+  </div>
+
+  <div class="field">
+    <%= f.label :entry_status, "ステータス" %>
+    <%= f.select :entry_status, [
+    ["検討中","検討中"],
+    ["書類選考","書類選考"],
+    ["面接待ち","面接待ち"],
+    ["面談済み","面接済み"],
+    ["終了","終了"]
+    ] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :interview_day, "面接日" %>
+    <%= f.date_select :interview_day,
+        include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expected_sales, "見込売上" %>
+    <%= f.number_field :expected_sales %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rank, "見込ランク" %>
+    <%= f.select :rank, [["A","A"],["B","B"],["C","C"],["D","D"],["E","E"]] %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -23,9 +23,10 @@
     <tr>
       <th>担当者</th>
       <th>候補者</th>
-      <th>企業名</th>
+      <th>企業</th>
       <th>ステータス</th>
-      <th>売上</th>
+      <th>見込売上</th>
+      <th>成約金額</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -34,17 +35,33 @@
     <% @records.each do |record| %>
       <tr>
         <td><%= record.user.name %></td>
-        <td><%= record.candidate %></td>
-        <td><%= record.client %></td>
-        <td><%= record.status %></td>
-        <td><%= record.sales %>万円</td>
-        <td><%= link_to '編集', edit_record_path(record) %></td>
-        <td><%= link_to '削除', record, data: { confirm: '削除しますか?' }, method: :delete %></td>
+        <td><%= link_to record.candidate, edit_record_path(record) %></td>
+        <td>
+          <% record.entries.each do |entry| %>
+            <%= link_to entry.client, edit_entry_path(entry) %>
+          <% end %>  
+        </td>
+        <td><%= link_to record.status, edit_record_path(record) %></td>
+        <td>
+          <% record.entries.each do |entry| %>
+            <%= link_to entry.expected_sales, edit_entry_path(entry) %>万円
+          <% end %>  
+        </td>
+        <td>
+          <% if record.sales %>
+          <%= link_to record.sales, edit_record_path(record) %>万円
+          <% end %>  
+        </td>
+        <td><%= link_to '案件状況', record_path(record) %></td>
+        <td><%= link_to '商談削除', record, data: { confirm: '削除しますか?' }, method: :delete %></td>
+        <td><%= link_to '応募追加', new_entry_path %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<%= link_to '応募一覧', "/entries" %>
+<%= link_to '応募編集', "/entries/1/edit" %>
 
 <p class="btn"><%= link_to '新規作成', new_record_path %></p>

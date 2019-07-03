@@ -1,0 +1,37 @@
+<p>
+  <strong>User:</strong>
+  <%= @entry.user_id %>
+</p>
+
+<p>
+  <strong>Candidate:</strong>
+  <%= @entry.candidate_id %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @entry.client %>
+</p>
+
+<p>
+  <strong>Entry status:</strong>
+  <%= @entry.entry_status %>
+</p>
+
+<p>
+  <strong>Interview day:</strong>
+  <%= @entry.interview_day %>
+</p>
+
+<p>
+  <strong>Expected sales:</strong>
+  <%= @entry.expected_sales %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @entry.rank %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>

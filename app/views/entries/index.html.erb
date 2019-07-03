@@ -1,0 +1,37 @@
+<h1>応募管理</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>担当者</th>
+      <th>候補者</th>
+      <th>企業名</th>
+      <th>ステータス</th>
+      <th>面接日</th>
+      <th>見込売上</th>
+      <th>見込ランク</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.user.name %></td>
+        <td><%= entry.record.candidate %></td>
+        <td><%= entry.client %></td>
+        <td><%= entry.entry_status %></td>
+        <td><%= entry.interview_day %></td>
+        <td><%= entry.expected_sales %></td>
+        <td><%= entry.rank %></td>
+        <td><%= link_to 'Show', entry %></td>
+        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Entry', new_entry_path %>

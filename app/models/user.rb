@@ -8,6 +8,7 @@ class User < ApplicationRecord
   
   has_many :records
   has_many :targets
+  has_many :entries
   
   def records
     return Record.where(user_id: self.id)
