@@ -3,6 +3,8 @@ class Target < ApplicationRecord
     validates :year, {presence: true}
     validates :year, {presence: true}
     
+    belongs_to :user
+    
     def user
         return User.find_by(id: self.user_id) 
     end

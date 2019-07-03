@@ -1,11 +1,16 @@
 <h1>商談一覧</h1>
 
 <div> 
-  <%= form_tag(records_path, method: "get") do %>
-   <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "検索", :name => nil %>
-  </p>
+  <%= search_form_for @q do |f| %>
+    担当名<%= f.select :user_id_eq, options_from_collection_for_select(User.all, "id", "name", @q.user_id_eq),
+    include_blank: true %>
+    ステータス<%= f.select :status_eq, [
+      ["オーダリング", "オーダリング"], 
+      ["マッチング", "マッチング"],
+      ["クロージング", "クロージング"],
+      ["成約", "成約"]],
+    include_blank: true %>
+    <%= f.submit "検索" %>
   <% end %>
 </div>
 

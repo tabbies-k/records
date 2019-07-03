@@ -6,6 +6,9 @@ class User < ApplicationRecord
   validates :name, {presence: true}
   validates :branch, {presence: true}
   
+  has_many :records
+  has_many :targets
+  
   def records
     return Record.where(user_id: self.id)
   end

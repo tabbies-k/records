@@ -5,7 +5,8 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.search(params[:search])
+    @q = Record.ransack(params[:q])
+    @records = @q.result(distinct: true)
     @total_sales = @records.sum(:sales)
   end
 
