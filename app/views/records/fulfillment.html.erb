@@ -1,0 +1,38 @@
+<h1>成約一覧</h1>
+
+<div>
+  <p>全員の合計売上　<%= @total_sales %>万円</p>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>担当者</th>
+      <th>候補者</th>
+      <th>企業</th>
+      <th>ステータス</th>
+      <th>成約金額</th>
+      <th>計上日</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @records.each do |record| %>
+      <tr>
+        <td><%= record.user.name %></td>
+        <td><%= record.candidate %></td>
+        <td>            
+          <% record.entries.each do |entry| %>
+            <%= link_to entry.client, edit_entry_path(entry) %>
+          <% end %>  
+        </td>
+        <td><%= record.status %></td>
+        <td><%= record.sales %>万円</td>
+        <td><%=  %></td>
+        <td><%= link_to '編集', edit_record_path(record) %></td>          
+        <td><%= link_to '削除', record, data: { confirm: '削除しますか?' }, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

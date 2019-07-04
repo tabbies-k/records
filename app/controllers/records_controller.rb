@@ -66,6 +66,15 @@ class RecordsController < ApplicationController
     end
   end
   
+  def fulfillment
+    @records = Record.where(status: "成約")
+    @total_sales = @records.sum(:sales)
+  end
+  
+  def closed
+    @records = Record.where(status: "終了")
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_record

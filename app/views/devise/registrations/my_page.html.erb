@@ -59,6 +59,7 @@
       <th>候補者</th>
       <th>企業名</th>
       <th>ステータス</th>
+      <th>見込売上</th>
       <th>売上</th>
     </tr>
   </thead>
@@ -73,6 +74,11 @@
           <% end %>
         </td>
         <td><%= record.status %></td>
+        <td>
+          <% record.entries.each do |entry| %>
+            <%= entry.expected_sales %>万円
+          <% end %>
+        </td>
         <td><%= record.sales %></td>
         <td><%= link_to '編集', edit_record_path(record) %></td>
         <td><%= link_to '削除', record, data: { confirm: '削除しますか?' }, method: :delete %></td>

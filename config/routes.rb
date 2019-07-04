@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     devise_scope :user do
     get 'my_page' => 'users/registrations#my_page'
 end
- 
+
+    get 'records/fulfillment' => "records#fulfillment"
+    get 'records/closed' => "records#closed"
     resources :records
     get 'users' => "users#index"
     get 'users/:id' => "users#show"
