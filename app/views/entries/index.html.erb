@@ -4,6 +4,7 @@
   <p>理論見込合計：
     <%= @total_expected_sales %>万円
   </p>
+  <%= link_to '終了一覧', '#' %>
 </div>
 
 
@@ -26,13 +27,13 @@
 <table class="table">
   <thead>
     <tr>
-      <th>担当者</th>
-      <th>候補者</th>
+      <th><%= sort_link(@q, :user_id, "担当者") %></th>
+      <th><%= sort_link(@q, :candidate_id, "候補者") %></th>
       <th>企業名</th>
-      <th>ステータス</th>
+      <th><%= sort_link(@q, :entry_status, "ステータス") %></th>
       <th>面接日</th>
       <th>見込売上</th>
-      <th>見込ランク</th>
+      <th><%= sort_link(@q, :rank, "見込ランク") %></th>
       <th>理論見込</th>
       <th colspan="3"></th>
     </tr>
@@ -40,21 +41,23 @@
 
   <tbody>
     <% @entries.each do |entry| %>
-      <tr>
-        <td><%= link_to entry.user.name, edit_entry_path(entry) %></td>
-        <td><%= link_to entry.record.candidate, edit_entry_path(entry) %></td>
-        <td><%= link_to entry.client, edit_entry_path(entry) %></td>
-        <td><%= link_to entry.entry_status, edit_entry_path(entry) %></td>
-        <td>
-          <% if entry.interview_day %>
-            <%= link_to entry.interview_day, edit_entry_path(entry) %>
-          <% end %>
-        </td>
-        <td><%= link_to entry.expected_sales, edit_entry_path(entry) %>万円</td>
-        <td><%= link_to entry.rank, edit_entry_path(entry) %></td>
-        <td><%= entry.caliculation %>万円</td>
-        <td><%= link_to '削除', entry, method: :delete, data: { confirm: '削除しますか?' } %></td>
-      </tr>
+      <% if entry.entry_status != "終了" %>
+        <tr>
+          <td><%= link_to entry.user.name, edit_entry_path(entry) %></td>
+          <td><%= link_to entry.record.candidate, edit_entry_path(entry) %></td>
+          <td><%= link_to entry.client, edit_entry_path(entry) %></td>
+          <td><%= link_to entry.entry_status, edit_entry_path(entry) %></td>
+          <td>
+            <% if entry.interview_day %>
+              <%= link_to entry.interview_day, edit_entry_path(entry) %>
+            <% end %>
+          </td>
+          <td><%= link_to entry.expected_sales, edit_entry_path(entry) %>万円</td>
+          <td><%= link_to entry.rank, edit_entry_path(entry) %></td>
+          <td><%= entry.caliculation %>万円</td>
+          <td><%= link_to '削除', entry, method: :delete, data: { confirm: '削除しますか?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -8,7 +8,8 @@
       ["オーダリング", "オーダリング"], 
       ["マッチング", "マッチング"],
       ["クロージング", "クロージング"],
-      ["成約", "成約"]],
+      ["成約", "成約"],
+      ["終了", "終了"]],
     include_blank: true %>
     <%= f.submit "検索" %>
   <% end %>
@@ -16,15 +17,17 @@
 
 <div>
   <p>全員の合計売上　<%= @total_sales %>万円</p>
+  <%= link_to '成約一覧', '#' %>
+  <%= link_to '終了一覧', '#' %>
 </div>
 
 <table class="table">
   <thead>
     <tr>
-      <th>担当者</th>
-      <th>候補者</th>
+      <th><%= sort_link(@q, :user_id, "担当者") %></th>
+      <th><%= sort_link(@q, :candidate_id, "候補者") %></th>
       <th>企業</th>
-      <th>ステータス</th>
+      <th><%= sort_link(@q, :status, "ステータス") %></th>
       <th>見込売上</th>
       <th>成約金額</th>
       <th colspan="3"></th>
@@ -33,29 +36,31 @@
 
   <tbody>
     <% @records.each do |record| %>
-      <tr>
-        <td><%= record.user.name %></td>
-        <td><%= link_to record.candidate, edit_record_path(record) %></td>
-        <td>
-          <% record.entries.each do |entry| %>
-            <%= link_to entry.client, edit_entry_path(entry) %>
-          <% end %>  
-        </td>
-        <td><%= link_to record.status, edit_record_path(record) %></td>
-        <td>
-          <% record.entries.each do |entry| %>
-            <%= link_to entry.expected_sales, edit_entry_path(entry) %>万円
-          <% end %>  
-        </td>
-        <td>
-          <% if record.sales %>
-          <%= link_to record.sales, edit_record_path(record) %>万円
-          <% end %>  
-        </td>
-        <td><%= link_to '案件状況', record_path(record) %></td>
-        <td><%= link_to '商談削除', record, data: { confirm: '削除しますか?' }, method: :delete %></td>
-        <td><%= link_to '応募追加', new_entry_path %></td>
-      </tr>
+      <% if record.status != "成約" && record.status != "終了" %>
+        <tr>
+          <td><%= record.user.name %></td>
+          <td><%= link_to record.candidate, edit_record_path(record) %></td>
+          <td>
+            <% record.entries.each do |entry| %>
+              <%= link_to entry.client, edit_entry_path(entry) %>
+            <% end %>  
+          </td>
+          <td><%= link_to record.status, edit_record_path(record) %></td>
+          <td>
+            <% record.entries.each do |entry| %>
+              <%= link_to entry.expected_sales, edit_entry_path(entry) %>万円
+            <% end %>  
+          </td>
+          <td>
+            <% if record.sales %>
+              <%= link_to record.sales, edit_record_path(record) %>万円
+            <% end %>  
+          </td>
+          <td><%= link_to '案件状況', record_path(record) %></td>
+          <td><%= link_to '商談削除', record, data: { confirm: '削除しますか?' }, method: :delete %></td>
+          <td><%= link_to '応募追加', new_entry_path %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -37,12 +37,10 @@
     ]%>
   </div>
 
-  <% if @record.status == "成約" %>
   <div class="field"> 
     <%= f.label :成約金額 %>
     <%= f.number_field :sales %>
   </div>
-  <% end %>
 
   <div class="actions">
     <%= f.submit '送信', :class=>"btn"  %>
