@@ -4,7 +4,12 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+    @q = Entry.ransack(params[:q])
+    @entries = @q.result(distinct: true)
+    @total_expected_sales = 0
+    @entries.each do |entry|
+      @total_expected_sales += entry.caliculation
+    end
   end
 
   # GET /entries/1

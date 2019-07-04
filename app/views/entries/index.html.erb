@@ -1,4 +1,27 @@
-<h1>応募管理</h1>
+<h1>応募一覧</h1>
+
+<div>
+  <p>理論見込合計：
+    <%= @total_expected_sales %>万円
+  </p>
+</div>
+
+
+<div> 
+  <%= search_form_for @q do |f| %>
+    担当名<%= f.select :user_id_eq, options_from_collection_for_select(User.all, "id", "name", @q.user_id_eq),
+    include_blank: true %>
+    ステータス<%= f.select :entry_status_eq, [
+    ["検討中","検討中"],
+    ["書類選考","書類選考"],
+    ["面接待ち","面接待ち"],
+    ["面談済み","面接済み"],
+    ["終了","終了"],
+    ["成約", "成約"]],
+    include_blank: true %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
 
 <table class="table">
   <thead>
@@ -10,6 +33,7 @@
       <th>面接日</th>
       <th>見込売上</th>
       <th>見込ランク</th>
+      <th>理論見込</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,16 +41,19 @@
   <tbody>
     <% @entries.each do |entry| %>
       <tr>
-        <td><%= entry.user.name %></td>
-        <td><%= entry.record.candidate %></td>
-        <td><%= entry.client %></td>
-        <td><%= entry.entry_status %></td>
-        <td><%= entry.interview_day %></td>
-        <td><%= entry.expected_sales %></td>
-        <td><%= entry.rank %></td>
-        <td><%= link_to 'Show', entry %></td>
-        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to entry.user.name, edit_entry_path(entry) %></td>
+        <td><%= link_to entry.record.candidate, edit_entry_path(entry) %></td>
+        <td><%= link_to entry.client, edit_entry_path(entry) %></td>
+        <td><%= link_to entry.entry_status, edit_entry_path(entry) %></td>
+        <td>
+          <% if entry.interview_day %>
+            <%= link_to entry.interview_day, edit_entry_path(entry) %>
+          <% end %>
+        </td>
+        <td><%= link_to entry.expected_sales, edit_entry_path(entry) %>万円</td>
+        <td><%= link_to entry.rank, edit_entry_path(entry) %></td>
+        <td><%= entry.caliculation %>万円</td>
+        <td><%= link_to '削除', entry, method: :delete, data: { confirm: '削除しますか?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +61,4 @@
 
 <br>
 
-<%= link_to 'New Entry', new_entry_path %>
+<p class="btn"><%= link_to '新規作成', new_entry_path %></p>

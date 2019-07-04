@@ -32,14 +32,17 @@
       ["オーダリング","オーダリング"],
       ["マッチング","マッチング"],
       ["クロージング","クロージング"],
-      ["成約","成約"]
+      ["成約","成約"],
+      ["終了","終了"]
     ]%>
   </div>
 
-  <div class="field">
+  <% if @record.status == "成約" %>
+  <div class="field"> 
     <%= f.label :成約金額 %>
     <%= f.number_field :sales %>
   </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit '送信', :class=>"btn"  %>

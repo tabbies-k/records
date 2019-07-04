@@ -55,7 +55,10 @@
     今更だけどcandidate_idでrecordと繋げるのではなくてrecord_idにした方が良かったような気がする。</br>
     レコードと応募を紐づけすることはできた。複数の応募を紐づけるのにはeachを入れ子にすれば良い！</br>
     問題はレコードに紐づいた状態での新規応募作成の仕方がわからない。</br>
+    herokuしてみたがなんかエラーが出てる。新規応募作成はできた（showもeditもできる）が、応募一覧でエラー。
+    indexのcandidateがActionView::Template::Error (undefined method `candidate' for nil:NilClass):
     </br>
+    →解決。candidateがnilということ。登録したentryのcandidate_idに合致するrecordのcandidateがいなかった。
     </p>
   </body>
 </html>
