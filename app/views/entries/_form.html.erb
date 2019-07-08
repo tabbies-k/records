@@ -12,16 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id, "担当者" %>
-    <%= f.collection_select(:user_id, @users, :id, :name) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :candidate_id, "候補者" %>
-    <%= f.number_field :candidate_id %>
-  </div>
-
-  <div class="field">
     <%= f.label :client, "企業名" %>
     <%= f.text_field :client %>
   </div>

@@ -5,13 +5,14 @@ class Record < ApplicationRecord
 
     belongs_to :user
     has_many :entries
+    accepts_nested_attributes_for :entries
 
     def user
         return User.find_by(id: self.user_id)
     end
     
     def entries
-        return Entry.where(candidate_id: self.candidate_id)
+        return Entry.where(record_id: self.id)
     end
     
 end

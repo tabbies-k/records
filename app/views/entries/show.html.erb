@@ -1,11 +1,11 @@
 <p>
   <strong>User:</strong>
-  <%= @entry.user_id %>
+  <%= @entry.user.name %>
 </p>
 
 <p>
   <strong>Candidate:</strong>
-  <%= @entry.candidate_id %>
+  <%= @entry.record.candidate %>
 </p>
 
 <p>
@@ -33,5 +33,5 @@
   <%= @entry.rank %>
 </p>
 
-<%= link_to 'Edit', edit_entry_path(@entry) %> |
-<%= link_to 'Back', entries_path %>
+<%= link_to '編集', edit_entry_path(@entry) %> |
+<%= link_to '戻る', entries_path %>

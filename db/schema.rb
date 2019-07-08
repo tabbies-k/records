@@ -10,11 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190703040553) do
+ActiveRecord::Schema.define(version: 20190707070812) do
 
   create_table "entries", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "candidate_id"
     t.string   "client"
     t.string   "entry_status"
     t.date     "interview_day"
@@ -22,6 +20,7 @@ ActiveRecord::Schema.define(version: 20190703040553) do
     t.string   "rank"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "record_id"
   end
 
   create_table "records", force: :cascade do |t|

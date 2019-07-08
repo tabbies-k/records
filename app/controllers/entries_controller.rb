@@ -8,7 +8,9 @@ class EntriesController < ApplicationController
     @entries = @q.result(distinct: true)
     @total_expected_sales = 0
     @entries.each do |entry|
-      @total_expected_sales += entry.caliculation
+      if entry.expected_sales
+        @total_expected_sales += entry.caliculation
+      end
     end
   end
 

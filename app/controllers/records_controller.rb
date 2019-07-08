@@ -5,7 +5,7 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @q = Record.ransack(params[:q])
+    @q = Record.joins(:entries).ransack(params[:q])
     @records = @q.result(distinct: true)
     @total_sales = @records.sum(:sales)
   end
@@ -83,6 +83,7 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params.require(:record).permit(:candidate, :candidate_id, :status, :sales, :user_id)
+      params.require(:record).permit(:candidate, :candidate_id, :status, :sales, :user_id,
+      entries_attributes:[:user_id, :candidate_id, :client, :entry_status, :interview_day, :expected_sales, :rank])
     end
 end

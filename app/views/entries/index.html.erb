@@ -10,7 +10,7 @@
 
 <div> 
   <%= search_form_for @q do |f| %>
-    担当名<%= f.select :user_id_eq, options_from_collection_for_select(User.all, "id", "name", @q.user_id_eq),
+    担当者<%= f.select :record_user_id_eq, options_from_collection_for_select(User.all, "id", "name", @q.record_user_id_eq),
     include_blank: true %>
     ステータス<%= f.select :entry_status_eq, [
     ["検討中","検討中"],
@@ -27,8 +27,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= sort_link(@q, :user_id, "担当者") %></th>
-      <th><%= sort_link(@q, :candidate_id, "候補者") %></th>
+      <th>担当者</th>
+      <th>候補者</th>
       <th>企業名</th>
       <th><%= sort_link(@q, :entry_status, "ステータス") %></th>
       <th>面接日</th>
@@ -41,10 +41,10 @@
 
   <tbody>
     <% @entries.each do |entry| %>
-      <% if entry.entry_status != "終了" %>
+      <% if entry.entry_status != "終了" && entry.record.status !=  "終了" && entry.record.status != "成約" %>
         <tr>
-          <td><%= link_to entry.user.name, edit_entry_path(entry) %></td>
-          <td><%= link_to entry.record.candidate, edit_entry_path(entry) %></td>
+          <td><%= entry.user.name %></td>
+          <td><%= entry.record.candidate %></td>
           <td><%= link_to entry.client, edit_entry_path(entry) %></td>
           <td><%= link_to entry.entry_status, edit_entry_path(entry) %></td>
           <td>
