@@ -21,7 +21,7 @@ class EntriesController < ApplicationController
 
   # GET /entries/new
   def new
-    @entry = Entry.new
+    @entry = Entry.new(record_id: params[:record_id])
     @users = User.all
   end
 
@@ -78,6 +78,6 @@ class EntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params.require(:entry).permit(:user_id, :candidate_id, :client, :entry_status, :interview_day, :expected_sales, :rank)
+      params.require(:entry).permit(:user_id, :candidate_id, :client, :entry_status, :interview_day, :expected_sales, :rank, :record_id)
     end
 end

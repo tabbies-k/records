@@ -2,6 +2,8 @@ class Entry < ApplicationRecord
     
     belongs_to :record, optional: true
 
+    default_scope -> { order(record_id: :asc) }
+
     def record
         return Record.find_by(id: self.record_id)
     end

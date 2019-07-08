@@ -43,6 +43,8 @@
     <%= f.select :rank, [["E","E"],["D","D"],["C","C"],["B","B"],["A","A"]] %>
   </div>
 
+  <%= f.hidden_field :record_id, :value =>@entry.record_id %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

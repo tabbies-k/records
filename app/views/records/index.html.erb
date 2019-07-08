@@ -39,15 +39,19 @@
           <td><%= record.user.name %></td>
           <td><%= link_to record.candidate, edit_record_path(record) %></td>
           <td>
-            <% record.entries.each do |entry| %>
-              <%= link_to entry.client, edit_entry_path(entry) %>
-            <% end %>  
+            <% if record.entries %>
+              <% record.entries.each do |entry| %>
+                <%= link_to entry.client, edit_entry_path(entry) %>
+              <% end %>  
+            <% end %>
           </td>
           <td><%= link_to record.status, edit_record_path(record) %></td>
           <td>
-            <% record.entries.each do |entry| %>
-              <%= link_to entry.expected_sales, edit_entry_path(entry) %>万円
-            <% end %>  
+            <% if record.entries %>
+              <% record.entries.each do |entry| %>
+                <%= link_to entry.expected_sales, edit_entry_path(entry) %>万円
+              <% end %>  
+            <% end %>
           </td>
           <td>
             <% if record.sales %>
@@ -56,6 +60,7 @@
           </td>
           <td><%= link_to '案件状況', record_path(record) %></td>
           <td><%= link_to '商談削除', record, data: { confirm: '削除しますか?' }, method: :delete %></td>
+          <td><%= link_to '応募追加', new_entry_path(record_id: record.id) %></td>
         </tr>
       <% end %>
     <% end %>
